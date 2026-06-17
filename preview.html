@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+/* ==========================================================================
+   TYPORA 自定义公文排版样式表 (Base User CSS)
+   ==========================================================================
+   功能说明：
+     本样式为 Typora 注入【标准中国党政机关公文风格】排版。
+     通过 .typora-export 类选择器隔离，仅在 导出 PDF / 打印 时生效
+     （Typora 在导出时会给 body 添加 typora-export 类）。
+     日常编辑界面保持原主题样式，互不干扰。
+
+   ★ 一键回退 / 禁用方法 ★
+     只需将下方第 24 行的 `.typora-export {` 改为 `/* .typora-export {`
+     并在文件最末尾的 `}` 后加上 `*/` 即可整块注释掉。
+   ========================================================================== */
+
+
+/* ========================================================================
+   >>>>  BEGIN  公文排版样式  ——  注释掉本行到末尾的 END 行即可整体禁用  <<<<
+   ======================================================================== */
+
+.typora-export {
+
+    /* ------------------------------------------------------------------
+       1. 页面设置：国标公文页边距 (GB/T 9704—2012)
+       A4 纸张：上 35mm / 下 35mm / 左 28mm / 右 26mm
+       ------------------------------------------------------------------ */
+
+    /* ------------------------------------------------------------------
+       2. 全局字体与字号：仿宋三号 (21px)，行高 1.6，纯黑打印
+       ------------------------------------------------------------------ */
+    font-family: "FangSong", "仿宋", "仿宋_GB2312", "STFangsong", "SimSun", serif !important;
+    font-size: 21px !important;
+    line-height: 1.6 !important;
+    color: #000000 !important;
+    background: #ffffff !important;
+}
+
+/* @page 必须放在选择器外面 */
+@media print {
+    @page {
+        size: A4;
+        margin: 1.5cm 1cm 1cm 1cm;
+    }
+}
+
+/* ------------------------------------------------------------------
+   3. 正文段落：首行缩进 2 字符 + 两端对齐
+   ------------------------------------------------------------------ */
+.typora-export p {
+    text-indent: 2em !important;
+    text-align: justify !important;
+    margin-top: 0 !important;
+    margin-bottom: 8px !important;
+    orphans: 3 !important;
+    widows: 3 !important;
+}
+
+/* ------------------------------------------------------------------
+   4. 标题层级规范
+   ------------------------------------------------------------------ */
+
+/* 一级标题 (h1)：黑体三号 (22px) 加粗，居中对齐 */
+.typora-export h1 {
+    font-family: "SimHei", "黑体", "STHeiti", "Microsoft YaHei", sans-serif !important;
+    font-size: 22px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    text-indent: 0 !important;
+    margin-top: 25px !important;
+    margin-bottom: 15px !important;
+    line-height: 1.4 !important;
+}
+
+/* 二级标题 (h2)：黑体三号 (22px) 加粗，左对齐 */
+.typora-export h2 {
+    font-family: "SimHei", "黑体", "STHeiti", "Microsoft YaHei", sans-serif !important;
+    font-size: 22px !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    text-indent: 0 !important;
+    margin-top: 25px !important;
+    margin-bottom: 15px !important;
+    line-height: 1.4 !important;
+}
+
+/* 二级标题 (h3)：楷体三号 (21px) 加粗，左对齐 */
+.typora-export h3 {
+    font-family: "Kaiti", "楷体", "楷体_GB2312", "STKaiti", "KaiTi_GB2312", serif !important;
+    font-size: 21px !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    text-indent: 0 !important;
+    margin-top: 20px !important;
+    margin-bottom: 12px !important;
+}
+
+/* 三级标题 (h4)：仿宋三号 (21px) 加粗，左对齐 */
+.typora-export h4 {
+    font-family: "FangSong", "仿宋", "仿宋_GB2312", "STFangsong", serif !important;
+    font-size: 21px !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    text-indent: 0 !important;
+    margin-top: 15px !important;
+    margin-bottom: 10px !important;
+}
+
+/* 四级及以下标题 (h5, h6)：同仿宋加粗，左对齐，不缩进 */
+.typora-export h5,
+.typora-export h6 {
+    font-family: "FangSong", "仿宋", "仿宋_GB2312", "STFangsong", serif !important;
+    font-size: 21px !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    text-indent: 0 !important;
+    margin-top: 12px !important;
+    margin-bottom: 8px !important;
+}
+
+/* ------------------------------------------------------------------
+   5. 表格：纯黑细线闭合边框（传统统计表 / 严谨三线表风格）
+   ------------------------------------------------------------------ */
+.typora-export table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 15px 0 !important;
+    padding: 0 !important;
+}
+
+.typora-export table tr {
+    background-color: #ffffff !important;
+}
+
+.typora-export th,
+.typora-export td {
+    border: 1px solid #000000 !important;
+    padding: 6px 12px !important;
+    font-size: 19px !important;
+    line-height: 1.4 !important;
+    text-align: left !important;
+}
+
+.typora-export th {
+    font-weight: bold !important;
+    background-color: #f5f5f5 !important;
+}
+
+/* 表格内段落取消首行缩进 */
+.typora-export table p {
+    text-indent: 0 !important;
+}
+
+/* ------------------------------------------------------------------
+   6. 现代元素降级：消除灰色背景，防止公文 PDF 出现卡片式灰色色块
+   ------------------------------------------------------------------ */
+.typora-export blockquote {
+    border-left: 3px solid #000000 !important;
+    background: none !important;
+    padding-left: 15px !important;
+    margin-left: 0 !important;
+    font-style: normal !important;
+}
+
+/* 块级代码：细线框包裹，无背景 */
+.typora-export pre {
+    font-family: "Courier New", Consolas, "SimSun", monospace !important;
+    background: none !important;
+    border: 1px solid #000000 !important;
+    padding: 10px 15px !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+}
+
+/* 行内代码：无背景，仅底部细线标记 */
+.typora-export code {
+    font-family: "Courier New", Consolas, "SimSun", monospace !important;
+    background: none !important;
+    border: none !important;
+    border-bottom: 1px solid #000000 !important;
+    font-size: 18px !important;
+    padding: 0 2px !important;
+}
+
+/* 行内代码在 pre 内时取消底部线 */
+.typora-export pre code {
+    border: none !important;
+    border-bottom: none !important;
+    padding: 0 !important;
+}
+
+/* ------------------------------------------------------------------
+   7. 列表样式（有序/无序统一缩进：每级 1em）
+   ------------------------------------------------------------------ */
+.typora-export ul,
+.typora-export ol {
+    margin-top: 5px !important;
+    margin-bottom: 8px !important;
+    padding-left: 1em !important;
+}
+
+.typora-export li {
+    text-indent: 0 !important;
+    margin-bottom: 4px !important;
+}
+
+/* 列表内的段落取消首行缩进 */
+.typora-export li p {
+    text-indent: 0 !important;
+}
+
+/* ------------------------------------------------------------------
+   8. 图片与分割线
+   ------------------------------------------------------------------ */
+.typora-export img {
+    display: block !important;
+    margin: 15px auto !important;
+    max-width: 100% !important;
+}
+
+.typora-export hr {
+    border: none !important;
+    border-top: 1px solid #000000 !important;
+    margin: 20px 0 !important;
+}
+
+/* ------------------------------------------------------------------
+   9. 超链接与印刷优化
+   ------------------------------------------------------------------ */
+.typora-export a {
+    text-decoration: none !important;
+    color: #000000 !important;
+}
+
+/* 防止标题孤行 */
+.typora-export h1,
+.typora-export h2,
+.typora-export h3,
+.typora-export h4,
+.typora-export h5,
+.typora-export h6 {
+    page-break-after: avoid !important;
+}
+
+/* 防止表格和代码块内部断页 */
+.typora-export table,
+.typora-export pre {
+    page-break-inside: avoid !important;
+}
+
+/* span 元素继承父级字体（处理 Typora 中 span 包裹的文字） */
+.typora-export span {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    color: inherit !important;
+}
+
+/* 确保 #write 容器也继承全局字体设置 */
+.typora-export #write {
+    font-family: "FangSong", "仿宋", "仿宋_GB2312", "STFangsong", "SimSun", serif !important;
+    font-size: 21px !important;
+    line-height: 1.6 !important;
+    color: #000000 !important;
+}
+
+/* ========================================================================
+   >>>>  END  公文排版样式  ——  注释掉 BEGIN 行到本行即可整体禁用  <<<<
+   ======================================================================== */
+
+</style>
+</head>
+<body class="typora-export typora-print os-windows">
+<div id="write">
+<h1 id="公文排版样式演示文档">公文排版样式演示文档</h1>
+<p>本文件用于展示 Typora
+公文排版样式的导出效果，涵盖各级标题、正文段落、表格、列表、引用等常见元素。</p>
+<h2 id="一标题层级示例">一、标题层级示例</h2>
+<h3 id="一二级标题下的三级标题">（一）二级标题下的三级标题</h3>
+<p>正文采用仿宋三号字体，首行缩进两个字符，两端对齐。这是中国党政机关公文的标准排版格式，适用于通知、报告、请示、批复等各类公文。</p>
+<h4 id="四级标题示例">四级标题示例</h4>
+<p>四级及以下标题使用仿宋加粗，左对齐，不缩进。在公文中通常用于三级标题下的进一步分类说明。</p>
+<h5 id="五级标题示例">五级标题示例</h5>
+<p>五级标题与四级标题样式相同，实际公文中较少使用超过四级的标题层级。</p>
+<h3 id="二段落格式说明">（二）段落格式说明</h3>
+<p>公文正文的排版要求严格，需要确保字体统一、行距适当、缩进规范。本样式表针对以上要求进行了完整适配，确保导出
+PDF 后与正式公文格式一致。</p>
+<p>段落之间保留适当间距，既不过于紧凑也不过于松散，便于阅读和批注。</p>
+<h2 id="二表格示例">二、表格示例</h2>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>项目名称</th>
+<th>负责人</th>
+<th>计划完成时间</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>基础设施改造</td>
+<td>张某某</td>
+<td>2026年12月</td>
+<td>已立项</td>
+</tr>
+<tr>
+<td>2</td>
+<td>环境整治工程</td>
+<td>李某某</td>
+<td>2027年3月</td>
+<td>待审批</td>
+</tr>
+<tr>
+<td>3</td>
+<td>公共服务配套</td>
+<td>王某某</td>
+<td>2026年9月</td>
+<td>施工中</td>
+</tr>
+<tr>
+<td>4</td>
+<td>生态修复项目</td>
+<td>赵某某</td>
+<td>2027年6月</td>
+<td>方案编制</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>表格采用纯黑细线闭合边框，表头浅灰底色，整体风格与传统统计表一致。</p>
+</blockquote>
+<h2 id="三列表示例">三、列表示例</h2>
+<h3 id="有序列表">有序列表</h3>
+<ol type="1">
+<li>第一项工作内容：完成前期调研和数据采集。</li>
+<li>第二项工作内容：组织专家评审并形成初步方案。</li>
+<li>第三项工作内容：向社会公众征求意见并修改完善。</li>
+<li>第四项工作内容：提交上级部门审批并落实执行。</li>
+</ol>
+<h3 id="无序列表">无序列表</h3>
+<ul>
+<li>注意事项一：所有数据须经核实后方可引用。</li>
+<li>注意事项二：涉及敏感信息的内容不得对外公开。</li>
+<li>注意事项三：各环节负责人应按时提交进度报告。</li>
+</ul>
+<h3 id="嵌套列表">嵌套列表</h3>
+<ol type="1">
+<li>第一阶段：前期准备
+<ul>
+<li>组建工作专班</li>
+<li>制定工作计划</li>
+<li>落实经费保障</li>
+</ul></li>
+<li>第二阶段：组织实施
+<ul>
+<li>开展现场调查</li>
+<li>编制规划方案</li>
+<li>组织专家论证</li>
+</ul></li>
+<li>第三阶段：总结验收
+<ul>
+<li>汇总成果资料</li>
+<li>编写总结报告</li>
+<li>做好经验推广</li>
+</ul></li>
+</ol>
+<h2 id="四引用与代码块">四、引用与代码块</h2>
+<blockquote>
+<p>此段为引用样式，用于标注重要提示、政策依据或上级文件精神。引用区域左侧带有黑色竖线标识，背景为透明，不使用灰色底色。</p>
+</blockquote>
+<pre><code>代码块样式示例：
+本样式表通过 .typora-export 选择器实现，
+仅在导出 PDF 时生效，不影响日常编辑界面。</code></pre>
+<p>行内代码示例：配置文件路径为
+<code>%APPDATA%\Typora\themes\base.user.css</code>。</p>
+<h2 id="五页边距与印刷规范">五、页边距与印刷规范</h2>
+<p>当前页边距设置为上方 1.5cm，其余三边各
+1cm。如需调整为国标公文标准（上 35mm / 下 35mm / 左 28mm / 右
+26mm），可在 CSS 文件中修改 <code>@page</code> 的 <code>margin</code>
+值。</p>
+<p>本样式还包含以下印刷优化措施：</p>
+<ul>
+<li>防止标题孤行（标题不会单独出现在页面底部）</li>
+<li>防止表格和代码块跨页断裂</li>
+<li>超链接显示为纯黑色无下划线，打印效果整洁</li>
+<li>图片居中显示，自动限制宽度不超出页面</li>
+</ul>
+<hr />
+<p><em>本文档仅用于样式演示，不包含任何实际业务内容。</em></p>
+
+</div>
+</body>
+</html>
