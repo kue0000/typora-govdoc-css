@@ -25,7 +25,28 @@
 irm https://raw.githubusercontent.com/kue0000/typora-govdoc-css/master/install.ps1 | iex
 ```
 
-脚本会自动下载样式文件并安装到 Typora 所有已安装主题中，安装后重启 Typora 即可。
+安装脚本会自动完成以下流程：
+
+1. **字体检测** — 检查系统是否已安装仿宋、黑体、楷体，缺失时会给出提示
+2. **备份** — 自动备份主题目录中已有的 `.user.css` 文件（带时间戳）
+3. **安装** — 下载样式文件并写入所有已安装主题的 `.user.css`
+4. **验证** — 生成排版预览页面并在浏览器中打开，确认效果
+
+安装后重启 Typora 即可。
+
+## 一键卸载
+
+安装时会在 Typora 主题目录生成 `uninstall.ps1`，执行即可卸载并还原旧样式：
+
+```powershell
+powershell -File "$env:APPDATA\Typora\themes\uninstall.ps1"
+```
+
+macOS 用户：
+
+```bash
+powershell -File "$HOME/Library/Application Support/abnerworks.Typora/themes/uninstall.ps1"
+```
 
 ## 手动安装
 
@@ -41,13 +62,15 @@ irm https://raw.githubusercontent.com/kue0000/typora-govdoc-css/master/install.p
 
 ## 验证
 
-导出任意 Markdown 文件为 PDF（文件 → 导出 → PDF），检查字体和排版是否生效。
+安装完成后会自动在浏览器中打开排版验证页面。如果显示正常，说明样式已生效。
+
+也可以在 Typora 中导出任意 Markdown 文件为 PDF（文件 → 导出 → PDF），检查字体和排版是否生效。
 
 > **注意**：Typora 的 PDF 导出使用 `.typora-export` 类选择器，而非 `@media print`。本样式已针对此机制做了适配。
 
-## 一键禁用
+## 临时禁用
 
-打开 `base.user.css`，将文件顶部附近的：
+如需临时禁用样式（而非完全卸载），打开 `base.user.css`，将文件顶部附近的：
 
 ```css
 .typora-export {
