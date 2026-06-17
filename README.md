@@ -4,7 +4,9 @@
 
 ## 效果预览
 
-[查看示例 PDF](preview.pdf) — 使用本样式导出的会议纪要文档。
+![排版效果预览](preview-composite-3.png)
+
+[下载示例 PDF](preview.pdf)
 
 ## 特性
 
